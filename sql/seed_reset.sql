@@ -1,0 +1,7 @@
+-- sql/seed_reset.sql
+USE shopping_list_app;
+SET FOREIGN_KEY_CHECKS=0;
+TRUNCATE TABLE items;
+TRUNCATE TABLE users;
+TRUNCATE TABLE categories;
+SET FOREIGN_KEY_CHECKS=1;
