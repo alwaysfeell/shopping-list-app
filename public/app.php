@@ -12,7 +12,6 @@ $userId = (int)$user['id'];
 $categoryFilter = isset($_GET['category']) && $_GET['category'] !== '' ? (int)$_GET['category'] : null;
 $categories = get_categories($pdo);
 
-// handle actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     csrf_validate();
     $action = $_POST['action'] ?? '';

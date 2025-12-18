@@ -19,12 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$user) {
         $errors[] = "Невірний username або пароль.";
     } else {
-        // lock check
         if (!empty($user['lock_until']) && strtotime($user['lock_until']) > time()) {
             $errors[] = "Акаунт тимчасово заблоковано до " . $user['lock_until'];
         } else {
             if (password_verify($password, $user['password_hash'])) {
-                // reset failed attempts
                 $pdo->prepare("UPDATE users SET failed_attempts=0, lock_until=NULL WHERE id=?")->execute([$user['id']]);
 
                 if ((int)$user['twofa_enabled'] === 1) {
@@ -38,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     redirect('app.php');
                 }
             } else {
-                // bump attempts
                 $lockMinutes = (require __DIR__ . '/../app/config.php')['lock_minutes'];
                 $failed = (int)$user['failed_attempts'] + 1;
                 $lockUntil = null;

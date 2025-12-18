@@ -8,7 +8,6 @@ $userId = (int)auth_user()['id'];
 $fmt = strtolower($_GET['fmt'] ?? 'json');
 $items = get_items($pdo, $userId, null);
 
-// map to export structure
 $out = [];
 foreach ($items as $it) {
     $out[] = [
@@ -31,7 +30,6 @@ if ($fmt === 'csv') {
     exit;
 }
 
-// default json
 header('Content-Type: application/json; charset=utf-8');
 header('Content-Disposition: attachment; filename="shopping_list.json"');
 echo json_encode($out, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);

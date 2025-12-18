@@ -1,10 +1,8 @@
 USE shopping_list_app;
 
--- Categories
 INSERT INTO categories (name) VALUES ('Продукти'),('Одяг'),('Інше')
 ON DUPLICATE KEY UPDATE name=VALUES(name);
 
--- Users (seed)
 INSERT INTO users (username, password_hash, twofa_enabled, twofa_code, failed_attempts, lock_until, created_at) VALUES
 ('user123', '$2b$12$qDGy16Gj.bmLJ6nPVD7m.O3QKFqPmUuklnmw557lQnckgmB9ZDthO', 0, NULL, 0, NULL, NOW()),
 ('edge_case_20_chars__', '$2b$12$DWxSs1N4Gj70n.WxOe9nwu8ziOz1s5TUcv07J6io9gV5ypFwzUx8G', 0, NULL, 0, NULL, NOW()),
@@ -12,7 +10,6 @@ INSERT INTO users (username, password_hash, twofa_enabled, twofa_code, failed_at
 ('twofa_user', '$2b$12$1rkq.VLZb2YMgN2QWEzIte0ta5MafP9EJUFfeJfV52Y4ozH0bdoTi', 1, '123456', 0, NULL, NOW())
 ON DUPLICATE KEY UPDATE username=VALUES(username);
 
--- Items for user123
 SET @uid := (SELECT id FROM users WHERE username='user123' LIMIT 1);
 SET @c_food := (SELECT id FROM categories WHERE name='Продукти' LIMIT 1);
 SET @c_cloth := (SELECT id FROM categories WHERE name='Одяг' LIMIT 1);

@@ -1,6 +1,4 @@
 <?php
-// app/validators.php
-
 function validate_username(string $username): ?string {
     $u = trim($username);
     if (strlen($u) < 3 || strlen($u) > 20) return "Username має бути 3–20 символів.";
@@ -13,7 +11,6 @@ function validate_password(string $password): ?string {
     return null;
 }
 
-// Назва: літери/цифри/пробіли, 1..100 (unicode)
 function validate_item_name(string $name): ?string {
     $n = trim($name);
     if ($n === '') return "Назва обов'язкова.";

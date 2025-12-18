@@ -1,5 +1,4 @@
 <?php
-// app/auth.php
 require_once __DIR__ . '/helpers.php';
 
 function auth_user(): ?array {
