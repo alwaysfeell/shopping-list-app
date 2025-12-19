@@ -112,3 +112,8 @@ input:focus, select:focus{border-color: var(--primary)}
 .empty{padding:12px; color:var(--muted)}
 pre{white-space:pre-wrap; word-break:break-word; background:#0b1326; padding:12px; border:1px solid var(--border); border-radius:12px; overflow:auto}
 .mt{margin-top:12px}
+
+p.muted a {
+  color: #8ab4ff;
+  text-decoration: underline;
+}

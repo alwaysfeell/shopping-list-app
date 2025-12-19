@@ -84,24 +84,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 include __DIR__ . '/_header.php';
 ?>
-<h1>Імпорт JSON/CSV</h1>
 
-<div class="card">
-  <p class="muted">Формат JSON: масив об'єктів з полями <code>name</code>, <code>price</code>, <code>category</code>, <code>is_purchased</code>.</p>
-  <form method="post" enctype="multipart/form-data">
-    <input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>">
-    <input type="file" name="file" accept=".json,.csv" required>
-    <button class="btn btn--primary" type="submit">Імпортувати</button>
-  </form>
+    <h1>Імпорт JSON/CSV</h1>
 
-  <details class="mt">
-    <summary>Приклад валідного JSON</summary>
-    <pre>[
+    <div class="card">
+        <p class="muted">
+            Формат JSON: масив об'єктів з полями
+            <code>name</code>, <code>price</code>, <code>category</code>, <code>is_purchased</code>.
+        </p>
+
+        <form method="post" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>">
+
+            <label for="import-file" class="form-label">
+                Файл для імпорту (CSV або JSON)
+            </label>
+
+            <input
+                    type="file"
+                    id="import-file"
+                    name="file"
+                    accept=".json,.csv"
+                    required
+            >
+
+            <button class="btn btn--primary" type="submit">
+                Імпортувати
+            </button>
+        </form>
+
+        <details class="mt">
+            <summary>Приклад валідного JSON</summary>
+            <pre>[
   {"name":"Рис 1кг","price":62.40,"category":"Продукти","is_purchased":false},
   {"name":"Шкарпетки чорні","price":99.99,"category":"Одяг","is_purchased":true},
   {"name":"Лампочка LED E27","price":120.00,"category":"Інше","is_purchased":false}
 ]</pre>
-  </details>
-</div>
+        </details>
+    </div>
 
 <?php include __DIR__ . '/_footer.php'; ?>
